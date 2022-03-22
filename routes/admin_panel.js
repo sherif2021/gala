@@ -233,7 +233,6 @@ router.get('/unActiveFood/:id', verifyTokenAndAdmin, async (req, res) => {
 router.post('/restaurants', verifyTokenAndAdmin, async (req, res) => {
 
 
-    console.log(req.body)
     try {
         const { name, address, taxesNumber, minimumDeliveryTime, maximumDeliveryTime, latitude, longitude, logo, cover, ownerName, phoneNumber, mail, password, avtive, openTime, closeTime } = req.body
 
@@ -248,6 +247,7 @@ router.post('/restaurants', verifyTokenAndAdmin, async (req, res) => {
                     active: avtive != 0,
                     openTime, closeTime,
                     accepted: true,
+                    commission: 2,
                     password: encryptText(password)
                 })
 
@@ -340,6 +340,7 @@ router.delete('/foods/:id', verifyTokenAndAdmin, async (req, res) => {
 router.post('/categories', verifyTokenAndAdmin, async (req, res) => {
 
     try {
+        console.log(req.body)
         const { name, image } = req.body
 
 
@@ -358,6 +359,7 @@ router.post('/categories', verifyTokenAndAdmin, async (req, res) => {
         }
     } catch (e) {
 
+        console.log(e)
         res.sendStatus(500)
     }
 })
