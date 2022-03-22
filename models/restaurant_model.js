@@ -39,7 +39,7 @@ const restaurantsSchema = new mongoose.Schema({
     },
     commission: {
         type: Number,
-        required: true
+        default: 2,
     },
 
 }, { versionKey: false, timestamps: true, })

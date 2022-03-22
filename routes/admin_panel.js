@@ -126,6 +126,7 @@ router.post('/deliverers', verifyTokenAndAdmin, async (req, res) => {
             res.sendStatus(500)
         }
     } catch (e) {
+        console.log(e)
         res.sendStatus(500)
     }
 })
@@ -247,7 +248,6 @@ router.post('/restaurants', verifyTokenAndAdmin, async (req, res) => {
                     active: avtive != 0,
                     openTime, closeTime,
                     accepted: true,
-                    commission: 2,
                     password: encryptText(password)
                 })
 
@@ -340,7 +340,7 @@ router.delete('/foods/:id', verifyTokenAndAdmin, async (req, res) => {
 router.post('/categories', verifyTokenAndAdmin, async (req, res) => {
 
     try {
-        console.log(req.body)
+        
         const { name, image } = req.body
 
 

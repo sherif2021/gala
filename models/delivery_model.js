@@ -24,7 +24,7 @@ const deliverersSchema = new mongoose.Schema({
     },
     commission: {
         type: Number,
-        required: true
+        default : 2,
     },
     rate: {
         type: mongoose.Schema.Types.Number,
