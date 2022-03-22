@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      Duffel Components - example usage of CardPayment in non-React checkout
+      page
+    </title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@duffel/components@latest/dist/CardPayment.min.css"
+    />
+  </head>
+  <body class="container">
+    <h1>Example CardPayment checkout page</h1>
+    <div id="target"></div>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/@duffel/components@latest/dist/CardPayment.umd.min.js"
+    ></script>
+    <script>
+      DuffelComponents.renderCardPaymentComponent('target', {
+        duffelPaymentIntentClientToken: duffelPaymentIntentClientToken
+        successfulPaymentHandler: successfulPaymentHandlerFn, // Show 'successful payment' page and confirm Duffel PaymentIntent
+        errorPaymentHandler: errorPaymentHandlerFn // Show error page
+      })
+    </script>
+  </body>
+</html>
