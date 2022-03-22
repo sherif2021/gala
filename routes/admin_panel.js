@@ -348,6 +348,7 @@ router.post('/categories', verifyTokenAndAdmin, async (req, res) => {
 
             const newCategory = new category_model({
                 name, image, accepted: true,
+                added_by: 'admin'
             })
             const result = await newCategory.save()
 
