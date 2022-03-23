@@ -79345,7 +79345,7 @@ F(a,b){var s,r=null,q=t.PG.a($.Iy().qs("main",!1,t.z))
 q=A.b(q.e,"keystore").c.qu("token")
 q=q==null?r:q.b
 s=A.azq(r,B.cl)
-return new A.zU(q!=null?new A.mS(r):new A.xN(r),"Gala dashboard",s,!1,r)}}
+return new A.zU(q!=null?new A.mS(r):new A.xN(r),"Gala Restaurant Dashboard",s,!1,r)}}
 A.ui.prototype={
 pc(){this.Ig()
 this.jz(0)},
