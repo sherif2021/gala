@@ -2,8 +2,13 @@ const mongoose = require('mongoose')
 
 
 const restaurantsSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    address: { type: String, required: true },
+    nameAr: { type: String, required: true },
+    nameEn: { type: String, required: true },
+    addressAr: { type: String, required: true },
+    addressEn: { type: String, required: true },
+    descriptionAr: { type: String, default: '' },
+    descriptionEn: { type: String, default: '' },
+
     taxesNumber: { type: String, required: true },
     minimumDeliveryTime: { type: Number, required: true },
     maximumDeliveryTime: { type: Number, required: true },
@@ -23,7 +28,6 @@ const restaurantsSchema = new mongoose.Schema({
     closeDate: { type: Number, default: 22 },
     lowestOrderPrice: { type: Number, default: 0 },
     deliveryPrice: { type: Number, default: 0 },
-    description: { type: String, default: '' },
     cats: {
         type: Array,
     },

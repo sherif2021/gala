@@ -4,9 +4,11 @@ const mongoose = require('mongoose')
 const foodsSchema = new mongoose.Schema({
     restaurantId: { type: String, require: true },
     categoryId: { type: String, required: true },
-    mealName: { type: String, required: true },
+    mealNameAr: { type: String, required: true },
+    mealNameEn: { type: String, required: true },
+    mealDescriptionAr: { type: String, required: true },
+    mealDescriptionEn: { type: String, required: true },
     price: { type: Number, required: true },
-    mealDescription: { type: String, required: true },
     mealImage: { type: String, required: true },
 
     // Offers
@@ -25,7 +27,11 @@ const foodsSchema = new mongoose.Schema({
     active: { type: Boolean, default: true },
     accepted: { type: Boolean, default: false },
 
-   
+    options: {
+        type: Array,
+        default: []
+    }
+
 
 }, { versionKey: false, timestamps: true, })
 

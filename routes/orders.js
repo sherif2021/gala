@@ -9,7 +9,7 @@ const { verifyToken } = require('../helper')
 
 router.post('/', verifyToken, async (req, res) => {
 
-    
+
     try {
         const {
             restId,
@@ -40,13 +40,18 @@ router.post('/', verifyToken, async (req, res) => {
                 const foods = await food_model.where('_id').in(foodIds)
 
                 var totalCost = 0
+
                 foods.forEach(e => {
 
                     meals.forEach(meal => {
 
                         if (meal.mealId == e._id) {
 
-                            meal.cost = meal.number * calcFoodPrice(e)
+
+                            meal.cost = meal.number * calcFoodPrice(e, meal.optionIndex)
+
+
+
                             totalCost += meal.cost
                         }
                     })
@@ -199,7 +204,8 @@ router.get('/:userId', async (req, res) => {
             result.forEach(order => {
                 for (const rest of rests) {
                     if (order._doc.restId == rest._doc._id) {
-                        order._doc.restName = rest._doc.name
+                        order._doc.restNameAr = rest._doc.nameAr
+                        order._doc.restNameEn = rest._doc.nameEn
                         order._doc.restCover = rest._doc.cover
                         order._doc.deliveryTime = rest._doc.maximumDeliveryTime
 
@@ -218,17 +224,20 @@ router.get('/:userId', async (req, res) => {
     }
 })
 
-const calcFoodPrice = (food) => {
+const calcFoodPrice = (food, option) => {
 
     const now = new Date().getTime()
 
-    if (!food.is_offer || (food.is_offer && (food.start_offer_date < now || end_offer_date > now))) return food.price
+    var optionPrice = 0
+    if (option && food.options.length >= option) optionPrice = food.options[option].price
+
+    if (!food.is_offer || (food.is_offer && (food.start_offer_date < now || end_offer_date > now))) return food.price + optionPrice
 
     else {
 
-        if (food.is_percentage_offer) return food.price - ((food.offer_value / 100) * food_model.price)
+        if (food.is_percentage_offer) return (food.price + optionPrice) - ((food.offer_value / 100) * (food.price + optionPrice))
 
-        else return food.price - food.offer_value
+        else return (food.price + optionPrice) - food.offer_value
     }
 }
 

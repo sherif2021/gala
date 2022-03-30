@@ -69,7 +69,6 @@ router.get('/foods/:rest', verifyTokenAndAdmin, async (req, res) => {
 })
 
 
-// get all foods by cat
 router.get('/foods/', verifyTokenAndAdmin, async (req, res) => {
 
 
