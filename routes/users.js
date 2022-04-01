@@ -32,7 +32,6 @@ router.post('/update', verifyToken, async (req, res) => {
             res.sendStatus(404)
         }
     } catch (e) {
-        console.log(e)
         res.sendStatus(500)
     }
 
