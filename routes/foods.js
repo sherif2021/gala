@@ -31,7 +31,11 @@ router.post('/search', async (req, res) => {
             {
                 'active': true,
                 'accepted': true,
-                $or: [{ mealName: { $regex: '.*' + data + '.*', $options: 'i' } }, { mealDescription: { $regex: '.*' + data + '.*', $options: 'i' } }]
+                $or: [
+                    { mealNameAr: { $regex: '.*' + data + '.*', $options: 'i' } },
+                    { mealNameEn: { $regex: '.*' + data + '.*', $options: 'i' } },
+                    { mealDescriptionAr: { $regex: '.*' + data + '.*', $options: 'i' } },
+                    { mealDescriptionEn: { $regex: '.*' + data + '.*', $options: 'i' } }]
             }).limit(20)
 
         res.json(result)

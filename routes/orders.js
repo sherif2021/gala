@@ -48,9 +48,7 @@ router.post('/', verifyToken, async (req, res) => {
                         if (meal.mealId == e._id) {
 
 
-                            meal.cost = meal.number * calcFoodPrice(e, meal.optionIndex)
-
-
+                            meal.cost = meal.number * calcFoodPrice(e, meal.option)
 
                             totalCost += meal.cost
                         }
@@ -120,7 +118,8 @@ router.post('/', verifyToken, async (req, res) => {
 
                 const result = await orderModel.save()
 
-                result._doc.restName = rest.name
+                result._doc.restNameAr = rest.nameAr
+                result._doc.restNameEn = rest.nameEn
                 result._doc.restCover = rest.cover
                 result._doc.deliveryTime = rest.maximumDeliveryTime
 
@@ -198,7 +197,7 @@ router.get('/:userId', async (req, res) => {
             })
 
 
-            const rests = await restaurant_model.where({ _id: { $in: restIds } }).select('name cover maximumDeliveryTime')
+            const rests = await restaurant_model.where({ _id: { $in: restIds } }).select('nameAr nameEn cover maximumDeliveryTime')
 
 
             result.forEach(order => {
@@ -213,7 +212,6 @@ router.get('/:userId', async (req, res) => {
                     }
                 }
             })
-
             res.json(result)
 
         } else
@@ -228,8 +226,7 @@ const calcFoodPrice = (food, option) => {
 
     const now = new Date().getTime()
 
-    var optionPrice = 0
-    if (option && food.options.length >= option) optionPrice = food.options[option].price
+    var optionPrice = option != null ? option.price : 0
 
     if (!food.is_offer || (food.is_offer && (food.start_offer_date < now || end_offer_date > now))) return food.price + optionPrice
 

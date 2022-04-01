@@ -197,10 +197,7 @@ router.post('/addCategory', verifyTokenAndRestaurant, async (req, res) => {
 // add food
 router.post('/addFood', verifyTokenAndRestaurant, async (req, res) => {
 
-
-
     try {
-
 
         req.body.accepted = false
         req.body.added_by = req.user.id
