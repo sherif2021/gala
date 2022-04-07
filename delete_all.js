@@ -4,6 +4,9 @@ const food_model = require('./models/food_model')
 const order_model = require('./models/order_model')
 const rest_model = require('./models/restaurant_model')
 
+require("dotenv").config();
+
+
 mongoose.connect(process.env.MONGODB_URI,
     {
         useNewUrlParser: true,

@@ -14,7 +14,6 @@ const serviceAccount = require(__dirname + "/serviceAccountKey.json");
 
 const jwt = require("jsonwebtoken")
 const real_time = require('./real_time');
-const { use } = require('./routes/delivery_panel');
 
 require("dotenv").config();
 
