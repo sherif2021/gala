@@ -234,34 +234,26 @@ router.post('/restaurants', verifyTokenAndAdmin, async (req, res) => {
 
 
     try {
-        const { name, address, taxesNumber, minimumDeliveryTime, maximumDeliveryTime, latitude, longitude, logo, cover, ownerName, phoneNumber, mail, password, avtive, openTime, closeTime } = req.body
 
+        const existRest = await restaurant_model.findOne({ mail: req.body.mail })
 
-        if (name && address && taxesNumber && minimumDeliveryTime && maximumDeliveryTime && latitude && longitude && logo && cover && ownerName && phoneNumber && mail && password) {
+        if (!existRest) {
 
-            const existRest = await restaurant_model.findOne({ mail })
+            req.body.password = encryptText(req.body.password)
 
-            if (!existRest) {
-                const newRestaurant = new restaurant_model({
-                    name, address, taxesNumber, minimumDeliveryTime, maximumDeliveryTime, latitude, longitude, logo, cover, ownerName, phoneNumber, mail,
-                    active: avtive != 0,
-                    openTime, closeTime,
-                    accepted: true,
-                    password: encryptText(password)
-                })
+            const newRestaurant = new restaurant_model(
+                req.body
+            )
 
-                const result = await newRestaurant.save()
+            const result = await newRestaurant.save()
 
-                result._doc.password = decryptText(result._doc.password)
-                res.json(result)
+            result._doc.password = decryptText(result._doc.password)
+            res.json(result)
 
-            } else {
-                res.sendStatus(400)
-            }
         } else {
-
-            res.sendStatus(500)
+            res.sendStatus(400)
         }
+
     } catch (e) {
 
         console.log(e)
