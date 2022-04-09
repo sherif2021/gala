@@ -109,7 +109,7 @@ wss.on('connection', function connection(client, req) {
 
                     if (real_time.admins.has(user.id)) {
                         real_time.admins.get(user.id).close()
-                        real_time.admins.delete(use.id)
+                        real_time.admins.delete(user.id)
                     }
 
                     client.send('connected')
@@ -133,7 +133,7 @@ wss.on('connection', function connection(client, req) {
                 } else if (user.isRestaurant) {
 
                     if (real_time.restaurants.has(user.id)) {
-                        real_time.restaurants.delete(use.id)
+                        real_time.restaurants.delete(user.id)
                     }
 
                     client.send('connected')
@@ -159,7 +159,7 @@ wss.on('connection', function connection(client, req) {
 
                     if (real_time.deliverers.has(user.id)) {
                         real_time.deliverers.get(user.id).close()
-                        real_time.deliverers.delete(use.id)
+                        real_time.deliverers.delete(user.id)
                     }
 
                     real_time.deliverers.set(user.id, client)
@@ -188,7 +188,7 @@ wss.on('connection', function connection(client, req) {
 
                     if (real_time.users.has(user.id)) {
                         real_time.users.get(user.id).close()
-                        real_time.users.delete(use.id)
+                        real_time.users.delete(user.id)
                     }
 
                     client.send('connected')
