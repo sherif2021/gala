@@ -31,7 +31,15 @@ router.post('/', verifyToken, async (req, res) => {
 
             const rest = await restaurant_model.findById(restId)
 
-            if (rest && rest.active && !rest.isBusy && new Date().getHours() <= rest.closeDate) {
+            const now = new Date()
+
+            if (rest.openDate[now.getDay()] == 0 && rest.closeDate[now.getDay()] == 0) {
+                return res.json({
+                    'message': 'Restaurant is not available now try agian later.'
+                })
+
+            }
+            if (rest && rest.active && rest.isOpen && !rest.isBusy && now.getHours() >= rest.openeDate[index] && now.getHours() <= rest.closeDate[index]) {
 
                 const foodIds = meals.map(e => {
                     return e.mealId

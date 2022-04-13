@@ -5,7 +5,9 @@ const delivery_model = require('../models/delivery_model')
 const category_model = require('../models/category_model')
 const coupon_model = require('../models/coupon_model')
 const notification_model = require('../models/notification_model')
-const user_model = require('../models/user_model')
+const order_model = require('../models/order_model')
+const rating_model = require('../models/rating_model')
+
 const real_time = require('../real_time')
 
 const { encryptText, decryptText, verifyTokenAndAdmin, createToken, sendNotificationToAll } = require('../helper')
@@ -50,6 +52,27 @@ router.get('/restaurants', verifyTokenAndAdmin, async (req, res) => {
 })
 
 
+// get all restaurants
+router.delete('/restaurants/:id', verifyTokenAndAdmin, async (req, res) => {
+
+    try {
+        const result = await restaurant_model.findOneAndDelete({ _id: req.params.id })
+
+        if (result) {
+            await food_model.deleteMany({ restaurantId: req.params.id }).exec()
+            await coupon_model.deleteMany({ rest_id: req.params.id }).exec()
+            await order_model.deleteMany({ restId: req.params.id }).exec()
+            await rating_model.deleteMany({ restId: req.params.id }).exec()
+        }
+
+        res.json(result ? 'success' : 'failed')
+
+    } catch (e) {
+
+        console.log(e)
+        res.sendStatus(500)
+    }
+})
 // get all foods by rest
 router.get('/foods/:rest', verifyTokenAndAdmin, async (req, res) => {
 

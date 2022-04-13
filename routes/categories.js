@@ -28,7 +28,8 @@ router.get('/:cat', async (req, res) => {
     try {
 
         const result = await restaurant_model.find({
-            cats: { $in: [req.params.cat] }
+            cats: { $in: [req.params.cat] },
+            'active': true
         })
 
         res.json(result)

@@ -83,17 +83,20 @@ router.get('/myRestInfo', verifyTokenAndRestaurant, async (req, res) => {
 
 })
 
-router.post('/changeRestInfo', verifyTokenAndRestaurant, async (req, res) => {
+router.post('/myRestInfo', verifyTokenAndRestaurant, async (req, res) => {
     try {
 
-
-        const { isBusy, isOpen, openDate, closeDate, lowestOrderPrice, deliveryPrice } = req.body
-
+        delete req.body.password
+        delete req.body.paid
+        delete req.body.commission
+        delete req.body.active
+        delete req.body.mail
+        delete req.body.rate
 
         const result = await restaurant_model.findByIdAndUpdate(
             req.user.id,
             {
-                $set: { isBusy, isOpen, openDate, closeDate, lowestOrderPrice, deliveryPrice },
+                $set: req.body,
             },
             { new: true }
         )
