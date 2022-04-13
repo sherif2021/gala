@@ -22,9 +22,9 @@ mongoose.connect(process.env.MONGODB_URI,
 async function deleteAll() {
 
     try {
-        await category_model.deleteMany({}).exec()
-        await food_model.deleteMany({}).exec()
-        await order_model.deleteMany({}).exec()
+    //    await category_model.deleteMany({}).exec()
+    //    await food_model.deleteMany({}).exec()
+    //    await order_model.deleteMany({}).exec()
         await rest_model.deleteMany({}).exec()
         console.log('here')
     } catch (e) {
