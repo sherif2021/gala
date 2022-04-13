@@ -37,7 +37,6 @@ router.post('/', verifyToken, async (req, res) => {
                 return res.json({
                     'message': 'Restaurant is not available now try agian later.'
                 })
-
             }
             if (rest && rest.active && rest.isOpen && !rest.isBusy && now.getHours() >= rest.openeDate[index] && now.getHours() <= rest.closeDate[index]) {
 
