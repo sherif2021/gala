@@ -263,6 +263,8 @@ router.post('/restaurants', verifyTokenAndAdmin, async (req, res) => {
         if (!existRest) {
 
             req.body.password = encryptText(req.body.password)
+            delete req.body.openDate
+            delete req.body.closeDate
 
             const newRestaurant = new restaurant_model(
                 req.body

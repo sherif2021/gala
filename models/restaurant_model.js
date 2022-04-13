@@ -24,8 +24,8 @@ const restaurantsSchema = new mongoose.Schema({
 
     isBusy: { type: Boolean, default: false },
     isOpen: { type: Boolean, default: true },
-    openDate: { type: Array, default: [7.0, 7.0, 7.0, 7.0, 7.0, 7.0, 7.0] },
-    closeDate: { type: Array, default: [22.0, 22.0, 22.0, 22.0, 22.0, 22.0, 22.0] },
+    openDate: { type: Array, default: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] },
+    closeDate: { type: Array, default: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] },
     lowestOrderPrice: { type: Number, default: 0 },
     deliveryPrice: { type: Number, default: 0 },
     cats: {
