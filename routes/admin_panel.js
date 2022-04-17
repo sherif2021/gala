@@ -309,6 +309,7 @@ router.post('/foods', verifyTokenAndAdmin, async (req, res) => {
             },
             { $addToSet: { cats: result.categoryId } }
         ).exec()
+
     } catch (e) {
 
         console.log(e)
@@ -467,14 +468,14 @@ router.get('/approveFoods/:id', verifyTokenAndAdmin, async (req, res) => {
             food
         )
 
-        res.json(food)
-
         restaurant_model.updateOne(
             {
                 _id: food.restaurantId,
             },
             { $addToSet: { cats: food.categoryId } }
-        )
+        ).exec()
+
+        res.json(food)
 
     } catch (e) {
 
