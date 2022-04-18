@@ -33,7 +33,6 @@ router.post('/', verifyToken, async (req, res) => {
 
             const now = new Date()
             
-
             if (rest.openDate[now.getDay()] == 0 && rest.closeDate[now.getDay()] == 0) {
 
                 return res.json({
@@ -41,7 +40,7 @@ router.post('/', verifyToken, async (req, res) => {
                 })
             }
 
-            if (rest && rest.active && rest.isOpen && !rest.isBusy && now.getHours() >= rest.openeDate[index] && now.getHours() <= rest.closeDate[index]) {
+            if (rest && rest.active && rest.isOpen && !rest.isBusy && now.getHours() >= rest.openeDate[now.getDay()] && now.getHours() <= rest.closeDate[now.getDay()]) {
 
                 const foodIds = meals.map(e => {
                     return e.mealId
