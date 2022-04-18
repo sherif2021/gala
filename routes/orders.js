@@ -42,6 +42,7 @@ router.post('/', verifyToken, async (req, res) => {
 
             console.log(rest.openDate)
             console.log(rest.closeDate)
+            console.log(now.getDay())
             console.log(rest.openeDate[now.getDay()])
             console.log(rest.closeDate[now.getDay()])
 
