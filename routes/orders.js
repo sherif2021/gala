@@ -43,7 +43,7 @@ router.post('/', verifyToken, async (req, res) => {
             console.log(rest.openDate)
             console.log(rest.closeDate)
             console.log(now.getDay())
-            console.log(rest.openeDate[now.getDay()])
+            console.log(rest.openDate[now.getDay()])
             console.log(rest.closeDate[now.getDay()])
 
             if (rest && rest.active && rest.isOpen && !rest.isBusy && now.getHours() >= rest.openDate[now.getDay()] && now.getHours() <= rest.closeDate[now.getDay()]) {
