@@ -24,10 +24,11 @@ router.post('/login', async (req, res) => {
                 'token': createToken('admin', true, false, false)
             })
         } else {
-            res.sendStatus(500)
+            res.sendStatus(401)
         }
 
     } catch (e) {
+        console.log(e)
         res.sendStatus(500)
     }
 
