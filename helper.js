@@ -20,6 +20,7 @@ const createToken = (id, isAdmin, isRestaurant, isDelivery) => {
             isDelivery,
         },
         process.env.JWT_KEY,
+        { expiresIn: '1000d' },
     )
 }
 

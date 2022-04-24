@@ -100,7 +100,12 @@ wss.on('connection', function connection(client, req) {
 
 
         jwt.verify(token, process.env.JWT_KEY, (err, user) => {
-            if (err) client.close()
+
+            if (err) {
+                //client.close()
+
+                client.send('expired')
+            }
 
             else {
 
