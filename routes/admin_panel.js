@@ -548,7 +548,7 @@ router.post('/coupons', verifyTokenAndAdmin, async (req, res) => {
 
     try {
 
-        const exist = await coupon_model.findOne({ code: req.body.code })
+        const exist = await coupon_model.findOne({ code: req.body.code, rest_id: req.body.rest_id })
 
 
         if (!exist) {
@@ -566,6 +566,19 @@ router.post('/coupons', verifyTokenAndAdmin, async (req, res) => {
     }
 })
 
+// add coupon
+router.delete('/coupons/:id', verifyTokenAndAdmin, async (req, res) => {
+
+    try {
+
+        const result = await coupon_model.findOneAndDelete({ _id: req.params.id })
+
+        res.json(result ? 'success' : 'failed')
+
+    } catch (e) {
+        res.sendStatus(500)
+    }
+})
 router.get('/activeCoupon/:id', verifyTokenAndAdmin, async (req, res) => {
 
     try {
