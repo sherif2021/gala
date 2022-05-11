@@ -237,6 +237,11 @@ const calcFoodPrice = (food, option) => {
 
     var optionPrice = option != null ? option.price : 0
 
+    console.log(food)
+    console.log(food.is_offer)
+    console.log(food.start_offer_date < now)
+    console.log(food.end_offer_date > now)
+
     if (!food.is_offer || (food.is_offer && (food.start_offer_date < now || food.end_offer_date > now))) return food.price + optionPrice
 
     else {
