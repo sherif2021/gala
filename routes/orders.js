@@ -239,8 +239,8 @@ const calcFoodPrice = (food, option) => {
 
     console.log(food)
     console.log(food.is_offer)
-    console.log(food.start_offer_date < now)
-    console.log(food.end_offer_date > now)
+    console.log(now < food.start_offer_date)
+    console.log(now > food.end_offer_date)
 
     if (!food.is_offer || (food.is_offer && (food.start_offer_date < now || food.end_offer_date > now))) return food.price + optionPrice
 
