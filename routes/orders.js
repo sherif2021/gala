@@ -32,7 +32,7 @@ router.post('/', verifyToken, async (req, res) => {
             const rest = await restaurant_model.findById(restId)
 
             const now = new Date()
-            
+
             if (rest.openDate[now.getDay()] == 0 && rest.closeDate[now.getDay()] == 0) {
 
                 return res.json({
@@ -237,9 +237,16 @@ const calcFoodPrice = (food, option) => {
 
     var optionPrice = option != null ? option.price : 0
 
+    console.log(food.is_offer)
+    console.log(food.start_offer_date < now)
+    console.log(end_offer_date > now)
+
     if (!food.is_offer || (food.is_offer && (food.start_offer_date < now || end_offer_date > now))) return food.price + optionPrice
 
     else {
+
+        console.log('here')
+        console.log((food.price + optionPrice) - ((food.offer_value / 100) * (food.price + optionPrice)))
 
         if (food.is_percentage_offer) return (food.price + optionPrice) - ((food.offer_value / 100) * (food.price + optionPrice))
 
