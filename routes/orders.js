@@ -237,17 +237,9 @@ const calcFoodPrice = (food, option) => {
 
     var optionPrice = option != null ? option.price : 0
 
-    console.log(food)
-    console.log(food.is_offer)
-    console.log(now < food.start_offer_date)
-    console.log(now > food.end_offer_date)
-
-    if (!food.is_offer || (food.is_offer && (food.start_offer_date < now || food.end_offer_date > now))) return food.price + optionPrice
+    if (!food.is_offer || (food.is_offer && (now < food.start_offer_date || now > food.end_offer_date))) return food.price + optionPrice
 
     else {
-
-        console.log('here')
-        console.log((food.price + optionPrice) - ((food.offer_value / 100) * (food.price + optionPrice)))
 
         if (food.is_percentage_offer) return (food.price + optionPrice) - ((food.offer_value / 100) * (food.price + optionPrice))
 
