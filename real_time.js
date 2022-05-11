@@ -91,10 +91,11 @@ const onDeliveryMessage = async (client, data) => {
                 client.late = late
                 client.long = long
 
-                if (client.currentOrder != null && client.currentRest != null) {
+                if (client.currentOrder != null && client.currentUser != null) {
 
-                    sendRestData(
-                        client.currentRest,
+                    //
+                    sendUserData(
+                        client.currentUser,
                         'delivery_state',
                         {
                             'id': client.id,
@@ -225,7 +226,7 @@ const onDeliveryMessage = async (client, data) => {
                 )
                 user_model.findById(client.currentUser).select('fcmToken').then(r => {
                     if (r && r.fcmToken) {
-                        senNotification(r.fcmToken, 'تم تسليم الاوردر' , 'تم تسليم الاورد بنجاح')
+                        senNotification(r.fcmToken, 'تم تسليم الاوردر', 'تم تسليم الاورد بنجاح')
                     }
                 })
                 //
