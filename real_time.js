@@ -91,9 +91,6 @@ const onDeliveryMessage = async (client, data) => {
                 client.late = late
                 client.long = long
 
-                console.log(late)
-                console.log(long)
-                
                 if (client.currentOrder != null && client.currentUser != null) {
 
                     //
