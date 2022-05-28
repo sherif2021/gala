@@ -43130,7 +43130,7 @@ oY(){var s,r,q=this
 q.I2()
 s=t.z
 r=q.p2=t.PG.a($.y6().nH("main",!1,s)).GU(0,"token")
-if(r!=null){$.cA.b=A.aSa(A.aHQ("http://gala.ajory.online:4444/api",A.al(["key",u.L,"token",r],t.N,s)))
+if(r!=null){$.cA.b=A.aSa(A.aHQ("http://141.136.36.60:4444/api",A.al(["key",u.L,"token",r],t.N,s)))
 q.P8()
 q.ui()
 q.ue()
@@ -44115,7 +44115,7 @@ return A.w($async$pG,r)},
 P8(){var s=this,r=s.ax
 if(!r.gk(r)){r=s.p1
 if(r!=null)r.gHN().bt(0)
-r=A.aTb("ws://gala.ajory.online:4444/"+("/?key=dsgiodsggnsdfopsdhvnsdoptj9w345390245yweshdfosdehtwtr93wrh9qwo0erh9w0oqreh9qw03rhwq9erfhoashdfoser8or894tasdew9rwrgeo&token="+A.d(s.p2)))
+r=A.aTb("ws://141.136.36.60:4444/"+("/?key=dsgiodsggnsdfopsdhvnsdoptj9w345390245yweshdfosdehtwtr93wrh9qwo0erh9w0oqreh9qw03rhwq9erfhoashdfoser8or894tasdew9rwrgeo&token="+A.d(s.p2)))
 s.p1=r
 r=A.b(r.f.b,"_foreign")
 r=A.b(r.b,"_streamController")
@@ -90244,7 +90244,7 @@ s($,"b0V","ei",()=>A.aRx(A.aJM(A.a([1],t.t)).buffer,0).getInt8(0)===1?B.aU:B.AX)
 s($,"b3W","Ye",()=>new A.a_l(A.G(t.N,A.a5("mA"))))
 s($,"b49","aQd",()=>new A.ady())
 s($,"b3h","aPE",()=>new A.P())
-r($,"b0T","Im",()=>A.aSb(A.aHQ("http://gala.ajory.online:4444/api",A.al(["key",u.L],t.N,t.z))))
+r($,"b0T","Im",()=>A.aSb(A.aHQ("http://141.136.36.60:4444/api",A.al(["key",u.L],t.N,t.z))))
 s($,"b0Z","Y6",()=>new A.P())
 s($,"b1B","aOF",()=>new A.P())
 s($,"b2l","y8",()=>new A.P())

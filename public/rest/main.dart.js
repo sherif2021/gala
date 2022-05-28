@@ -78854,7 +78854,7 @@ while(true)switch(s){case 0:p=t.z
 o=q.k2=t.PG.a($.xe().nE("main",!1,p)).Gq(0,"token")
 s=o!=null?2:4
 break
-case 2:$.eA.b=A.aLs(A.aB1("http://gala.ajory.online:4444/api",A.aD(["key",u.L,"token",o],t.N,p)))
+case 2:$.eA.b=A.aLs(A.aB1("http://141.136.36.60:4444/api",A.aD(["key",u.L,"token",o],t.N,p)))
 s=5
 return A.L(q.u9(),$async$jw)
 case 5:q.OW()
@@ -78871,7 +78871,7 @@ return A.G($async$jw,r)},
 OW(){var s=this,r=s.ax
 if(!r.gl(r)){r=s.k1
 if(r!=null)r.gHn().bJ(0)
-r=A.aMr("ws://gala.ajory.online:4444/"+("/?key=dsgiodsggnsdfopsdhvnsdoptj9w345390245yweshdfosdehtwtr93wrh9qwo0erh9w0oqreh9qw03rhwq9erfhoashdfoser8or894tasdew9rwrgeo&token="+A.d(s.k2)))
+r=A.aMr("ws://141.136.36.60:4444/"+("/?key=dsgiodsggnsdfopsdhvnsdoptj9w345390245yweshdfosdehtwtr93wrh9qwo0erh9w0oqreh9qw03rhwq9erfhoashdfoser8or894tasdew9rwrgeo&token="+A.d(s.k2)))
 s.k1=r
 r=A.b(r.f.b,"_foreign")
 r=A.b(r.b,"_streamController")
@@ -88103,7 +88103,7 @@ s($,"aVT","aI7",()=>new A.Ml(A.cd("/",!0),A.cd("[^/]$",!0),A.cd("^/",!0)))
 s($,"aVV","Xa",()=>new A.P5(A.cd("[/\\\\]",!0),A.cd("[^/\\\\]$",!0),A.cd("^(\\\\\\\\[^\\\\]+\\\\[^\\\\/]+|[a-zA-Z]:[/\\\\])",!0),A.cd("^[/\\\\](?![/\\\\])",!0)))
 s($,"aVU","HC",()=>new A.OR(A.cd("/",!0),A.cd("(^[a-zA-Z][-+.a-zA-Z\\d]*://|[^/])$",!0),A.cd("[a-zA-Z][-+.a-zA-Z\\d]*://[^/]*",!0),A.cd("^/",!0)))
 s($,"aVS","aAe",()=>A.aOB())
-r($,"aUU","X5",()=>A.aLt(A.aB1("http://gala.ajory.online:4444/api",A.aD(["key",u.L],t.N,t.z))))})();(function nativeSupport(){!function(){var s=function(a){var m={}
+r($,"aUU","X5",()=>A.aLt(A.aB1("http://141.136.36.60:4444/api",A.aD(["key",u.L],t.N,t.z))))})();(function nativeSupport(){!function(){var s=function(a){var m={}
 m[a]=1
 return Object.keys(hunkHelpers.convertToFastObject(m))[0]}
 v.getIsolateTag=function(a){return s("___dart_"+a+v.isolateTag)}
