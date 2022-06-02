@@ -40,7 +40,7 @@ router.post('/', verifyToken, async (req, res) => {
                 })
             }
 
-            if (rest && rest.active && rest.isOpen && !rest.isBusy && now.getHours() >= rest.openDate[now.getDay()] && now.getHours() <= rest.closeDate[now.getDay()]) {
+            if (rest && rest.active && rest.isOpen && !rest.isBusy && rest.openDate[now.getDay()] == rest.closeDate[now.getDay()] || (now.getHours() >= rest.openDate[now.getDay()] && now.getHours() <= rest.closeDate[now.getDay()])) {
 
                 const foodIds = meals.map(e => {
                     return e.mealId
