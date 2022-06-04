@@ -33,7 +33,7 @@ router.post('/', verifyToken, async (req, res) => {
 
             const now = new Date()
 
-            if (rest.openDate[now.getDay()] == 0 && rest.closeDate[now.getDay()] == 0) {
+            if (!rest || (rest.openDate[now.getDay()] == 0 && rest.closeDate[now.getDay()] == 0)) {
 
                 return res.json({
                     'message': 'Restaurant is not available now try agian later.'
@@ -107,7 +107,7 @@ router.post('/', verifyToken, async (req, res) => {
 
                 const lastOrder = await order_model.findOne({}, {}, { sort: { 'orderNumber': -1 }, 'select': 'orderNumber' }).exec()
 
-                console.log(rest._doc)
+
                 const orderModel = new order_model({
                     restId,
                     userId: req.user.id,
@@ -143,6 +143,7 @@ router.post('/', verifyToken, async (req, res) => {
                     result
                 )
 
+                console.log(result)
                 res.json(result)
 
             } else {
