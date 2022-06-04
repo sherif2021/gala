@@ -111,12 +111,13 @@ const onDeliveryMessage = async (client, data) => {
 
                 if (client.currentOrder == null) {
 
+
                     order_model.findOneAndUpdate({ _id: json.data, accepted: true, cooked: true, picking: false },
 
                         {
                             deliveryId: client.id,
                             picking: true,
-                            commission: client.commission
+                            deliveryCommission: client.commission,
                         },
                         (err, order) => {
 
@@ -148,8 +149,6 @@ const onDeliveryMessage = async (client, data) => {
                                     'order_accepted',
                                     order,
                                 )
-
-
 
                             } else {
 
@@ -237,6 +236,28 @@ const onDeliveryMessage = async (client, data) => {
                 client.currentUser = null
                 client.currentRest = null
                 break
+            case 'request_order_rejected':
+
+                sendRestData(
+                    json.data.rest,
+                    'delivery_rejected_order',
+                    {
+                        'name': client.name,
+                        'order': json.data.order
+                    }
+                )
+                order_model.findById(order_model.data.order).then(r => {
+                    if (r) {
+                        sendNotificationToAllDeliverers(
+                            'طلبات جديدة',
+                            'يوجد طلبات جديدة حولك'
+                        )
+                        sendToAllDeliverers('new_order', r)
+                    }
+                }
+                )
+
+                break
 
         }
     } catch (e) {
@@ -277,7 +298,8 @@ function sendDeliveryState(client) {
                 delete delivery.password
 
                 sendDeliveryData(client.id, 'info', delivery)
-                client.commission = delivery.commission
+                client.commission = delivery._doc.commission
+                client.name = delivery._doc.name
 
             } else {
                 // send account delete

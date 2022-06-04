@@ -143,7 +143,6 @@ router.post('/', verifyToken, async (req, res) => {
                     result
                 )
 
-                console.log(result)
                 res.json(result)
 
             } else {

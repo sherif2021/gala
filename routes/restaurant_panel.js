@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const food_model = require('../models/food_model')
 const restaurant_model = require('../models/restaurant_model')
-const { verifyTokenAndRestaurant, decryptText, encryptText, createToken, senNotification } = require('../helper')
+const { verifyTokenAndRestaurant, decryptText, encryptText, createToken, senNotification, sendNotificationToAllDeliverers } = require('../helper')
 const delivery_model = require('../models/delivery_model')
 const order_model = require('../models/order_model')
 const user_model = require('../models/user_model')
@@ -382,22 +382,22 @@ router.post('/setOrderCooked/:id', verifyTokenAndRestaurant, async (req, res) =>
                 result._id,
             )
 
+            sendNotificationToAllDeliverers(
+                'طلبات جديدة',
+                'يوجد طلبات جديدة حولك'
+            )
+
             if (delivery) {
 
                 real_time.sendDeliveryData(
                     delivery,
                     'request_order',
                     result
-
                 )
             }
 
             else {
-
-                real_time.deliverers.forEach(e => {
-
-                    real_time.sendDeliveryData(e.id, 'new_order', result)
-                })
+                real_time.sendToAllDeliverers('new_order', result)
             }
 
             res.json({ 'status': true })

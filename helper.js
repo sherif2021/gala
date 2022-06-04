@@ -125,11 +125,35 @@ const sendNotificationToAll = async function (title, body) {
         return false
     }
 }
+const sendNotificationToAllDeliverers = async function (title, body) {
+
+    try {
+        if (title && body) {
+
+            const payload = {
+                "topic": 'deliverers',
+                "notification": {
+                    "title": title,
+                    "body": body,
+                },
+                data: {
+                    "click_action": "FLUTTER_NOTIFICATION_CLICK",
+                }
+            }
+            await firebaseAdmin.messaging().send(payload)
+            return true
+        }
+    } catch (e) {
+        console.log(e)
+        return false
+    }
+}
 module.exports = {
     encryptText, decryptText, createToken, verifyToken, senNotification,
     verifyTokenAndAuthorization,
     verifyTokenAndAdmin,
     verifyTokenAndRestaurant,
     verifyTokenAndDelivery,
-    sendNotificationToAll
+    sendNotificationToAll,
+    sendNotificationToAllDeliverers
 }
