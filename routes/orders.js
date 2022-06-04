@@ -107,6 +107,7 @@ router.post('/', verifyToken, async (req, res) => {
 
                 const lastOrder = await order_model.findOne({}, {}, { sort: { 'orderNumber': -1 }, 'select': 'orderNumber' }).exec()
 
+                console.log(rest._doc)
                 const orderModel = new order_model({
                     restId,
                     userId: req.user.id,
@@ -115,12 +116,12 @@ router.post('/', verifyToken, async (req, res) => {
                     meals,
                     orderTime,
                     delivery: delivery ?? false,
-                    deliveryCost: rest.deliveryPrice,
+                    deliveryCost: rest._doc.deliveryPrice,
                     userAddress,
                     userLatitude,
                     userLongitude,
                     orderNumber: lastOrder ? lastOrder.orderNumber + 1 : 1,
-                    commission: rest.commission ?? 2,
+                    commission: rest._doc.commission ?? 2,
                     couponCode,
                     coupon: couponModel,
                 })
