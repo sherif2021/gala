@@ -769,4 +769,28 @@ router.post('/sendNotification', verifyTokenAndAdmin, async (req, res) => {
     }
 
 })
+
+
+router.get('/set-order-restaurant-handled/:id', verifyTokenAndAdmin, async (req, res) => {
+
+    try {
+        const result = await order_model.findOneAndUpdate({ '_id': req.params.id }, { restaurant_handled: true }, { returnOriginal: false })
+
+        res.json(result)
+    } catch (e) {
+
+        res.sendStatus(500)
+    }
+})
+router.get('/set-order-delivery-handled/:id', verifyTokenAndAdmin, async (req, res) => {
+
+    try {
+        const result = await order_model.findOneAndUpdate({ '_id': req.params.id }, { delivery_handled: true }, { returnOriginal: false })
+
+        res.json(result)
+    } catch (e) {
+
+        res.sendStatus(500)
+    }
+})
 module.exports = router

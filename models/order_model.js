@@ -43,7 +43,15 @@ const orderSchema = new mongoose.Schema({
     },
     coupon: {
         type: Object,
-    }
+    },
+    restaurant_handled: {
+        type: Boolean,
+        default: false
+    },
+    delivery_handled: {
+        type: Boolean,
+        default: false
+    },
 
 }, { versionKey: false, timestamps: true, })
 
