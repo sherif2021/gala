@@ -45,6 +45,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use('/api/', (req, res, next) => {
 
+    console.log(req.path)
     if (process.env.API_KEY == req.headers.key) next()
     else
         res.sendStatus(500)
